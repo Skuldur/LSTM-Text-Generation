@@ -12,7 +12,7 @@ def predict(filename):
   generateText(model, raw_text)
 
 def loadWeights(model):
-  filename = "weights-improvement-68-1.0938-bigger.hdf5"
+  filename = sys.argv[3]
   model.load_weights(filename)
   model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 
@@ -32,7 +32,9 @@ def generateText(model, raw_text):
   start = numpy.random.randint(0, len(input)-1)
   pattern = input[start]
 
-  for i in range(1000):
+  iterations = int(sys.argv[2])
+
+  for i in range(iterations):
     x = numpy.reshape(pattern, (1, len(pattern), 1))
     x = x / float(n_vocab)
     prediction = model.predict(x, verbose=0)
