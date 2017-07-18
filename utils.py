@@ -7,8 +7,7 @@ from keras.layers import TimeDistributed
 from keras.layers import Activation
 from keras.utils import np_utils
 
-def getText():
-  filename = "short_nameofwind.txt"
+def getText(filename):
   raw_text = open(filename, encoding="utf8").read()
   return raw_text
 

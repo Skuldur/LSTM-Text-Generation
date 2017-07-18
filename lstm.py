@@ -1,9 +1,10 @@
+import sys
 from keras.callbacks import ModelCheckpoint
 
 from utils import getDataset, defineModel, getText
 
-def train():
-  raw_text = getText()
+def train(filename):
+  raw_text = getText(filename)
   data = getDataset(raw_text)
   model = defineModel(data)
   fitModel(model, data)
@@ -14,7 +15,8 @@ def fitModel(model, data):
   callbacks_list = [checkpoint]
 
   # fit the model
-  model.fit(data['input'], data['output'], nb_epoch=100, batch_size=64, callbacks=callbacks_list)
+  model.fit(data['input'], data['output'], nb_epoch=200, batch_size=64, callbacks=callbacks_list)
     
 if __name__ == "__main__":
-    train()
+    filename = sys.argv[1];
+    train(filename)

@@ -3,8 +3,8 @@ import numpy, sys
 
 from utils import getDataset, defineModel, getText, getInputOutput
 
-def predict():
-  raw_text = getText()
+def predict(filename):
+  raw_text = getText(filename)
   data = getDataset(raw_text)
   model = defineModel(data)
 
@@ -18,6 +18,7 @@ def loadWeights(model):
 
 def generateText(model, raw_text):
   chars = sorted(list(set(raw_text)))
+  char_to_int = dict((char, number) for number, char in enumerate(chars))
   int_to_char = dict((i, c) for i, c in enumerate(chars))
 
   n_chars = len(raw_text)
@@ -44,4 +45,5 @@ def generateText(model, raw_text):
   print("\nDone.")
 
 if __name__ == "__main__":
-    predict()
+    filename = sys.argv[1];
+    predict(filename)
