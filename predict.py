@@ -32,15 +32,15 @@ def generateText(model, raw_text):
   pattern = input[start]
 
   for i in range(1000):
-  	x = numpy.reshape(pattern, (1, len(pattern), 1))
-  	x = x / float(n_vocab)
-  	prediction = model.predict(x, verbose=0)
-  	index = numpy.argmax(prediction)
-  	result = int_to_char[index]
-  	seq_in = [int_to_char[value] for value in pattern]
-  	sys.stdout.write(result)
-  	pattern.append(index)
-  	pattern = pattern[1:len(pattern)]
+    x = numpy.reshape(pattern, (1, len(pattern), 1))
+    x = x / float(n_vocab)
+    prediction = model.predict(x, verbose=0)
+    index = numpy.argmax(prediction)
+    result = int_to_char[index]
+    seq_in = [int_to_char[value] for value in pattern]
+    sys.stdout.write(result)
+    pattern.append(index)
+    pattern = pattern[1:len(pattern)]
   print("\nDone.")
 
 if __name__ == "__main__":
